@@ -11,10 +11,15 @@ can be installed using
 To create a server administrator user with the ability to modify the mail server database, do
 the following:
 1. Log in to MySQL as root
+
        $ sudo mysql
+
 2. Create a new user
+
        > CREATE USER 'mailadmin' IDENTIFIED BY 'password';
+
 3. Grant the user privileges on the mail server database
+
        > GRANT SELECT, UPDATE, INSERT, DELETE ON mailserver.* TO 'mailadmin'@'localhost';
 
 The `mailadmin.conf` configuration file is already set with the values used in the guide linked

@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mailadmin_gui module &#8212; MailAdmin 1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="mailadmin_core module" href="mailadmin_core.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mailadmin_core.html" title="mailadmin_core module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MailAdmin 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mailadmin_gui module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-mailadmin_gui">
+<span id="mailadmin-gui-module"></span><h1>mailadmin_gui module<a class="headerlink" href="#module-mailadmin_gui" title="Permalink to this headline">¶</a></h1>
+<p>Graphical interface for administering the mail server database.</p>
+<p>A simple graphical interface for inspecting and manipulating the database associated
+with a Postfix- and Dovecot-based mail server configured according to the instructions
+from Linode (<a class="reference external" href="https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/">https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/</a>).</p>
+<dl class="py class">
+<dt id="mailadmin_gui.AppFrame">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_gui.</code><code class="sig-name descname">AppFrame</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.AppFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">wx._core.Frame</span></code></p>
+<p>Main frame for the application.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mailadmin_gui.EditAliasDialog">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_gui.</code><code class="sig-name descname">EditAliasDialog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em>, <em class="sig-param"><span class="n">alias</span><span class="p">:</span> <span class="n"><a class="reference internal" href="mailadmin_core.html#mailadmin_core.Alias" title="mailadmin_core.Alias">mailadmin_core.Alias</a></span></em>, <em class="sig-param"><span class="n">domains</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.EditAliasDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">wx._core.Dialog</span></code></p>
+<p>A dialog for creating/editing aliases.</p>
+<dl class="py attribute">
+<dt id="mailadmin_gui.EditAliasDialog.data_domain">
+<code class="sig-name descname">data_domain</code><a class="headerlink" href="#mailadmin_gui.EditAliasDialog.data_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input control for the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.Choice</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_gui.EditAliasDialog.data_source">
+<code class="sig-name descname">data_source</code><a class="headerlink" href="#mailadmin_gui.EditAliasDialog.data_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input control for the source email.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.TextCtrl</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_gui.EditAliasDialog.data_destination">
+<code class="sig-name descname">data_destination</code><a class="headerlink" href="#mailadmin_gui.EditAliasDialog.data_destination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input countrol for the destination email.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.TextCtrl</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="mailadmin_gui.EditDomainDialog">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_gui.</code><code class="sig-name descname">EditDomainDialog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em>, <em class="sig-param"><span class="n">domain</span><span class="p">:</span> <span class="n"><a class="reference internal" href="mailadmin_core.html#mailadmin_core.Domain" title="mailadmin_core.Domain">mailadmin_core.Domain</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.EditDomainDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">wx._core.Dialog</span></code></p>
+<p>A dialog for creating/editing domains.</p>
+<dl class="py attribute">
+<dt id="mailadmin_gui.EditDomainDialog.data_name">
+<code class="sig-name descname">data_name</code><a class="headerlink" href="#mailadmin_gui.EditDomainDialog.data_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input control for the domain name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.TextCtrl</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="mailadmin_gui.EditUserDialog">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_gui.</code><code class="sig-name descname">EditUserDialog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em>, <em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="mailadmin_core.html#mailadmin_core.User" title="mailadmin_core.User">mailadmin_core.User</a></span></em>, <em class="sig-param"><span class="n">domains</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.EditUserDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">wx._core.Dialog</span></code></p>
+<p>A dialog for editing users.</p>
+<dl class="py attribute">
+<dt id="mailadmin_gui.EditUserDialog.data_name">
+<code class="sig-name descname">data_name</code><a class="headerlink" href="#mailadmin_gui.EditUserDialog.data_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The input control for the user name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.TextCtrl</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_gui.EditUserDialog.data_domain">
+<code class="sig-name descname">data_domain</code><a class="headerlink" href="#mailadmin_gui.EditUserDialog.data_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input control for the domain name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.Choice</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_gui.EditUserDialog.data_pw1">
+<code class="sig-name descname">data_pw1</code><a class="headerlink" href="#mailadmin_gui.EditUserDialog.data_pw1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input control for the password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.TextCtrl</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_gui.EditUserDialog.data_pw2">
+<code class="sig-name descname">data_pw2</code><a class="headerlink" href="#mailadmin_gui.EditUserDialog.data_pw2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input control for re-entering the password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.TextCtrl</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="mailadmin_gui.EntityPanel">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_gui.</code><code class="sig-name descname">EntityPanel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">headings</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">initial_data</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>List<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>List<span class="p">[</span>List<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">add_handler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">edit_handler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remove_handler</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.EntityPanel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">wx._core.Panel</span></code></p>
+<p>Panel for displaying a list and add/edit/remove buttons for domains, users, and aliases.</p>
+<dl class="py attribute">
+<dt id="mailadmin_gui.EntityPanel.item_ctl">
+<code class="sig-name descname">item_ctl</code><a class="headerlink" href="#mailadmin_gui.EntityPanel.item_ctl" title="Permalink to this definition">¶</a></dt>
+<dd><p>The list of entities displayed by the panel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.ListCtrl</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_gui.EntityPanel.btn_add">
+<code class="sig-name descname">btn_add</code><a class="headerlink" href="#mailadmin_gui.EntityPanel.btn_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>The button to add entities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.Button</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_gui.EntityPanel.btn_edit">
+<code class="sig-name descname">btn_edit</code><a class="headerlink" href="#mailadmin_gui.EntityPanel.btn_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The button to edit entities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.Button</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_gui.EntityPanel.btn_remove">
+<code class="sig-name descname">btn_remove</code><a class="headerlink" href="#mailadmin_gui.EntityPanel.btn_remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>The button to remove entities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>wx.Button</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_gui.EntityPanel.add_row">
+<code class="sig-name descname">add_row</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>List<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.EntityPanel.add_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a row to the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item</strong> (<em>str</em><em> or </em><em>list of str</em>) – The column or list of columns to add.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_gui.EntityPanel.edit_row">
+<code class="sig-name descname">edit_row</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">column</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">new_value</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.EntityPanel.edit_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the contents of a cell in the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – The index of the row to change.</p></li>
+<li><p><strong>column</strong> (<em>int</em>) – The index of the column to change.</p></li>
+<li><p><strong>new_value</strong> (<em>str</em>) – The value to insert into the list.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_gui.EntityPanel.remove_row">
+<code class="sig-name descname">remove_row</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.EntityPanel.remove_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a row from the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>int</em>) – The index of the row to remove.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_gui.EntityPanel.replace_all_rows">
+<code class="sig-name descname">replace_all_rows</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_gui.EntityPanel.replace_all_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace all contents of the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>new_data</strong> (<em>list of str</em><em> or </em><em>list of list of str</em>) – The new rows to put into the table.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mailadmin_core.html"
+                        title="previous chapter">mailadmin_core module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api_src/mailadmin_gui.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mailadmin_core.html" title="mailadmin_core module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MailAdmin 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mailadmin_gui module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Thomas C. Flanagan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

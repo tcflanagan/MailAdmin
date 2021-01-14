@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MailAdmin &#8212; MailAdmin 1 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src" href="api_src/modules.html" />
+    <link rel="prev" title="Welcome to MailAdmin’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_src/modules.html" title="src"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MailAdmin’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MailAdmin 1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MailAdmin</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mailadmin">
+<h1>MailAdmin<a class="headerlink" href="#mailadmin" title="Permalink to this headline">¶</a></h1>
+<p>A simple command-line and gui interface for administering the user and domain database
+for a Postfix- and Dovecot-based mail server configured following the guide at
+<a class="reference external" href="https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/">Linode</a>.</p>
+<p>It is written in Python and depends on the <code class="docutils literal notranslate"><span class="pre">pymysql</span></code> and <code class="docutils literal notranslate"><span class="pre">wxPython</span></code> packages. In Debian 10, these
+can be installed using</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install python3-pymysql python3-wxgtk4.0
+</pre></div>
+</div>
+<p>To create a server administrator user with the ability to modify the mail server database, do
+the following:</p>
+<ol class="arabic">
+<li><p>Log in to MySQL as root</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>$ sudo mysql
+</pre></div>
+</div>
+</li>
+<li><p>Create a new user</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&gt; CREATE USER &#39;mailadmin&#39; IDENTIFIED BY &#39;password&#39;;
+</pre></div>
+</div>
+</li>
+<li><p>Grant the user privileges on the mail server database</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&gt; GRANT SELECT, UPDATE, INSERT, DELETE ON mailserver.* TO &#39;mailadmin&#39;@&#39;localhost&#39;;
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">mailadmin.conf</span></code> configuration file is already set with the values used in the guide linked
+above and the steps in the preceding paragraph, though you will (hopefully) have to change the
+value of password.</p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to MailAdmin’s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api_src/modules.html"
+                        title="next chapter">src</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/readme.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api_src/modules.html" title="src"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MailAdmin’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MailAdmin 1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MailAdmin</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Thomas C. Flanagan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

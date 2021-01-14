@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mailadmin_core module &#8212; MailAdmin 1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mailadmin_gui module" href="mailadmin_gui.html" />
+    <link rel="prev" title="mailadmin_cli module" href="mailadmin_cli.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mailadmin_gui.html" title="mailadmin_gui module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mailadmin_cli.html" title="mailadmin_cli module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MailAdmin 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mailadmin_core module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-mailadmin_core">
+<span id="mailadmin-core-module"></span><h1>mailadmin_core module<a class="headerlink" href="#module-mailadmin_core" title="Permalink to this headline">¶</a></h1>
+<p>Core classes for administering the mail server database.</p>
+<p>Classes and functions for inspecting and manipulating the database associated with
+a Postfix- and Dovecot-based mail server configured according to the instructions from
+Linode (<a class="reference external" href="https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/">https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-mysql/</a>).</p>
+<dl class="py class">
+<dt id="mailadmin_core.Alias">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_core.</code><code class="sig-name descname">Alias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alias_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">domain_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">source</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">destination</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">table_names</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A representation of an email alias database entry.</p>
+<dl class="py attribute">
+<dt id="mailadmin_core.Alias.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#mailadmin_core.Alias.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_core.Alias.domain_id">
+<code class="sig-name descname">domain_id</code><a class="headerlink" href="#mailadmin_core.Alias.domain_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the user’s email domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_core.Alias.source">
+<code class="sig-name descname">source</code><a class="headerlink" href="#mailadmin_core.Alias.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full email address whose mail should be forwarded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_core.Alias.destination">
+<code class="sig-name descname">destination</code><a class="headerlink" href="#mailadmin_core.Alias.destination" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full email address which should receive forwarded mail.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.Alias.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Alias.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a new alias into the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The ID of the newly-inserted item if successful. <cite>False</cite> otherwise.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.Alias.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Alias.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an existing alias from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the delete was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.Alias.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Alias.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update an existing alias in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the update was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="mailadmin_core.DatabaseException">
+<em class="property">exception </em><code class="sig-prename descclassname">mailadmin_core.</code><code class="sig-name descname">DatabaseException</code><a class="headerlink" href="#mailadmin_core.DatabaseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Custom exception to raise when user makes invalid database requests.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="mailadmin_core.Domain">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_core.</code><code class="sig-name descname">Domain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">domain_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">table_names</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A representation of an email domain database entry.</p>
+<dl class="py attribute">
+<dt id="mailadmin_core.Domain.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#mailadmin_core.Domain.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_core.Domain.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#mailadmin_core.Domain.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.Domain.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Domain.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a new domain into the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The ID of the newly-inserted item if successful. <cite>False</cite> otherwise.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.Domain.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Domain.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a domain from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the delete was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.Domain.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Domain.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update an existing domain in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the update was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="mailadmin_core.MailAdminDatabase">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_core.</code><code class="sig-name descname">MailAdminDatabase</code><a class="headerlink" href="#mailadmin_core.MailAdminDatabase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A representation of the mailserver database.</p>
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.commit_alias">
+<code class="sig-name descname">commit_alias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alias</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#mailadmin_core.Alias" title="mailadmin_core.Alias">mailadmin_core.Alias</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#mailadmin_core.Alias" title="mailadmin_core.Alias">mailadmin_core.Alias</a><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.commit_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the database with a given alias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alias</strong> (<a class="reference internal" href="#mailadmin_core.Alias" title="mailadmin_core.Alias"><em>Alias</em></a>) – The alias to insert into or update in the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The alias after the insertion/update has completed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mailadmin_core.Alias" title="mailadmin_core.Alias">Alias</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the user makes an invalid request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.commit_domain">
+<code class="sig-name descname">commit_domain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">domain</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#mailadmin_core.Domain" title="mailadmin_core.Domain">mailadmin_core.Domain</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#mailadmin_core.Domain" title="mailadmin_core.Domain">mailadmin_core.Domain</a><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.commit_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert or update a domain into or in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>domain</strong> (<a class="reference internal" href="#mailadmin_core.Domain" title="mailadmin_core.Domain"><em>Domain</em></a>) – The domain to be added or updated.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The domain after being added or updated.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mailadmin_core.Domain" title="mailadmin_core.Domain">Domain</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the the invoker makes an invalid request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.commit_user">
+<code class="sig-name descname">commit_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#mailadmin_core.User" title="mailadmin_core.User">mailadmin_core.User</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#mailadmin_core.User" title="mailadmin_core.User">mailadmin_core.User</a><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.commit_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the database with a given user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#mailadmin_core.User" title="mailadmin_core.User"><em>User</em></a>) – The user to insert into or update in the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The user after the insertion/update has completed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mailadmin_core.User" title="mailadmin_core.User">User</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the user makes an invalid request.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.delete_alias">
+<code class="sig-name descname">delete_alias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alias_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#mailadmin_core.MailAdminDatabase.delete_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an alias from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alias_id</strong> (<em>int</em>) – The ID of the alias to delete.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the deletion was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the alias already did not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.delete_domain">
+<code class="sig-name descname">delete_domain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">domain_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#mailadmin_core.MailAdminDatabase.delete_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the specified domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>domain_id</strong> (<em>int</em>) – The ID of the domain to delete</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the deletion was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the user attempts to delete a domain which does not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.delete_user">
+<code class="sig-name descname">delete_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#mailadmin_core.MailAdminDatabase.delete_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a user from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_id</strong> (<em>int</em>) – The ID of the user to delete.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the deletion was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the user does not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.delete_user_by_email">
+<code class="sig-name descname">delete_user_by_email</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#mailadmin_core.MailAdminDatabase.delete_user_by_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a user, specified by an email address, from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – The user’s email address.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the deletion was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the requested user does not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.get_alias">
+<code class="sig-name descname">get_alias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alias_id</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#mailadmin_core.Alias" title="mailadmin_core.Alias">mailadmin_core.Alias</a><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.get_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an alias specified by ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alias_id</strong> (<em>int</em><em> or </em><em>None</em>) – The ID of the alias to return, or <cite>None</cite> or 0 to create a new alias.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The requested alias.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mailadmin_core.Alias" title="mailadmin_core.Alias">Alias</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the alias is not found, or if no valid combinations of domains and users are found
+    to create an alias destination.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.get_aliases">
+<code class="sig-name descname">get_aliases</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.get_aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return lists of IDs, domain IDs, and source and destination addresses of the aliases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>ids</strong> (<em>list of int</em>) – The IDs of the users.</p></li>
+<li><p><strong>domain_ids</strong> (<em>list of int</em>) – The IDs of the users’ domains.</p></li>
+<li><p><strong>sources</strong> (<em>list of str</em>) – The source email addresses of the users.</p></li>
+<li><p><strong>destinations</strong> (<em>list of str</em>) – The destination email addresses of the users.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.get_domain">
+<code class="sig-name descname">get_domain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">domain_id</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.get_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a domain specified by an ID, or a new domain if no ID is given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>domain_id</strong> (<em>int</em><em> or </em><em>None</em>) – The ID of the domain to return, or <cite>None</cite> if a new domain is desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The requested domain.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mailadmin_core.Domain" title="mailadmin_core.Domain">Domain</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If an ID is given but the requested domain is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.get_domain_by_name">
+<code class="sig-name descname">get_domain_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#mailadmin_core.Domain" title="mailadmin_core.Domain">mailadmin_core.Domain</a><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.get_domain_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a domain specified by a name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the domain to return.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The requested domain.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mailadmin_core.Domain" title="mailadmin_core.Domain">Domain</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If the requested domain is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.get_domains">
+<code class="sig-name descname">get_domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.get_domains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return lists of IDs and names of the domains.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>ids</strong> (<em>list of int</em>) – The IDs of the domains.</p></li>
+<li><p><strong>names</strong> (<em>list of str</em>) – The domain names.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.get_user">
+<code class="sig-name descname">get_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#mailadmin_core.User" title="mailadmin_core.User">mailadmin_core.User</a><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.get_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a user specified by an ID, or a new user if no ID is given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_id</strong> (<em>int</em><em> or </em><em>None</em>) – The ID of the user to return, or <cite>None</cite> if a new user is desired.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The requested user.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mailadmin_core.User" title="mailadmin_core.User">User</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If an ID is given but the requested user is not found, or if there are no domains.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.get_user_by_email">
+<code class="sig-name descname">get_user_by_email</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#mailadmin_core.User" title="mailadmin_core.User">mailadmin_core.User</a><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.get_user_by_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a user specified by an email address.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – The email address of the user to return.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The requested user.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#mailadmin_core.User" title="mailadmin_core.User">User</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#mailadmin_core.DatabaseException" title="mailadmin_core.DatabaseException"><strong>DatabaseException</strong></a> – If no user is found with the given email address</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.get_users">
+<code class="sig-name descname">get_users</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.get_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return lists of IDs, domain IDs, and email addresses of the users.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>ids</strong> (<em>list of int</em>) – The IDs of the users.</p></li>
+<li><p><strong>domain_ids</strong> (<em>list of int</em>) – The IDs of the users’ domains.</p></li>
+<li><p><strong>emails</strong> (<em>list of str</em>) – The email addresses of the users.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.print_aliases">
+<code class="sig-name descname">print_aliases</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.print_aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a list of the aliases.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.print_domains">
+<code class="sig-name descname">print_domains</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.print_domains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a list of the known domains.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.MailAdminDatabase.print_users">
+<code class="sig-name descname">print_users</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.MailAdminDatabase.print_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a list of the known users.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="mailadmin_core.Table">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_core.</code><code class="sig-name descname">Table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">headings</span></em>, <em class="sig-param"><span class="n">alignments</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An object for printing nicely formatted tables</p>
+<dl class="py method">
+<dt id="mailadmin_core.Table.add_row">
+<code class="sig-name descname">add_row</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_row</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Table.add_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new row to the table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>new_row</strong> (<em>list of str</em>) – A list of new values to add to the table</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.Table.print">
+<code class="sig-name descname">print</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">'  '</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.Table.print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the contents of the table to the console.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sep</strong> (<em>str</em>) – The string to separate the columns of the table (Default: ‘  ‘).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="mailadmin_core.User">
+<em class="property">class </em><code class="sig-prename descclassname">mailadmin_core.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">domain_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">email</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">table_names</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A representation of an email user database entry.</p>
+<dl class="py attribute">
+<dt id="mailadmin_core.User.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#mailadmin_core.User.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_core.User.domain_id">
+<code class="sig-name descname">domain_id</code><a class="headerlink" href="#mailadmin_core.User.domain_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the user’s email domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_core.User.email">
+<code class="sig-name descname">email</code><a class="headerlink" href="#mailadmin_core.User.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full email address of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="mailadmin_core.User.password">
+<code class="sig-name descname">password</code><a class="headerlink" href="#mailadmin_core.User.password" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user’s password (only ever populated with user input for changing/creating).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.User.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.User.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a new user into the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The ID of the newly-inserted item if successful. <cite>False</cite> otherwise.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.User.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.User.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an existing user from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the delete was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="mailadmin_core.User.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.User.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update an existing user in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>pymysql.connections.Connection</em>) – A connection to the database.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the update was successful.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="mailadmin_core.first_or_default">
+<code class="sig-prename descclassname">mailadmin_core.</code><code class="sig-name descname">first_or_default</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sequence</span><span class="p">:</span> <span class="n">Iterable</span></em>, <em class="sig-param"><span class="n">condition</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">]</span><span class="p">, </span>bool<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.first_or_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the first item in the sequence matching the condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequence</strong> (<em>Iterable</em>) – The sequence to search for an item to match the condition.</p></li>
+<li><p><strong>condition</strong> (<em>callable</em>) – The condition to be met in the form of a callback function which accepts objects in
+the sequence and returns a boolean.</p></li>
+<li><p><strong>default</strong> (<em>Object</em>) – What to return if no item in the sequence matches the condition.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The first object in the sequence to satisfy the condition.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="mailadmin_core.first_or_default_index">
+<code class="sig-prename descclassname">mailadmin_core.</code><code class="sig-name descname">first_or_default_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sequence</span><span class="p">:</span> <span class="n">Iterable</span></em>, <em class="sig-param"><span class="n">condition</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">]</span><span class="p">, </span>bool<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">- 1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#mailadmin_core.first_or_default_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the index of the first item in the sequence matching the condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequence</strong> (<em>Iterable</em>) – The sequence to search for an item to match the condition.</p></li>
+<li><p><strong>condition</strong> (<em>callable</em>) – The condition to be met in the form of a callback function which accepts objects in the
+sequence and returns a boolean.</p></li>
+<li><p><strong>default</strong> (<em>int</em>) – What to return if no item in the sequence matches the condition (default -1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The index of the first item matching the condition.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mailadmin_cli.html"
+                        title="previous chapter">mailadmin_cli module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mailadmin_gui.html"
+                        title="next chapter">mailadmin_gui module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api_src/mailadmin_core.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mailadmin_gui.html" title="mailadmin_gui module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mailadmin_cli.html" title="mailadmin_cli module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MailAdmin 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mailadmin_core module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Thomas C. Flanagan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

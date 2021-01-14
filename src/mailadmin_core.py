@@ -8,6 +8,7 @@ import configparser
 from copy import copy
 import sys
 from typing import Callable, Iterable
+
 import pymysql
 
 def first_or_default(sequence: Iterable, condition: Callable[[], bool], default=None):
@@ -354,7 +355,6 @@ class MailAdminDatabase:
     """
 
     def __init__(self):
-
         self._db = None
 
         config = configparser.ConfigParser()

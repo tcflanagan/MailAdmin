@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Graphical interface for administering the mail server database.
 
 A simple graphical interface for inspecting and manipulating the database associated
@@ -11,7 +10,7 @@ from typing import List, Union
 
 import wx
 
-import mailadmin_core as core
+from src import mailadmin_core as core
 
 # pylint: disable=unsubscriptable-object,too-many-ancestors,too-few-public-methods
 
@@ -665,8 +664,13 @@ class AppFrame(wx.Frame):
                 else:
                     pass
 
-if __name__ == '__main__':
+def run():
+    """Run the GUI application."""
     app = wx.App()
     frame = AppFrame(None)
     frame.Show()
     app.MainLoop()
+
+
+if __name__ == '__main__':
+    run()

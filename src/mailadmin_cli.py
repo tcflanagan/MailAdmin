@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Command-line interface for administering the mail server database.
 
 A simple command-line interface for inspecting and manipulating the database associated
@@ -8,9 +7,11 @@ from Linode (https://www.linode.com/docs/guides/email-with-postfix-dovecot-and-m
 
 import argparse
 from getpass import getpass
-import mailadmin_core as core
 
-def run_cli():
+from src import mailadmin_core as core
+
+
+def create_parser() -> argparse.ArgumentParser:
     """Run the command-line program."""
     parser = argparse.ArgumentParser(prog="MailAdmin",
                                     description=("Manage the users of a Dovcot/Postfix mail "
@@ -92,7 +93,14 @@ def run_cli():
                                     help='The address to which incoming mail will be redirected.')
 
 
-    args = parser.parse_args()
+    parser.add_argument('--no-gui', action='store_true')
+
+
+    return parser
+
+
+def parse_args_cli(args: argparse.Namespace):
+    """Run the command based on the arguments."""
 
     try:
         if args.area == 'domains':
@@ -198,4 +206,6 @@ def run_cli():
         print("ERROR:",exc)
 
 if __name__ == '__main__':
-    run_cli()
+    cli_parser = create_parser()
+    cli_args = cli_parser.parse_args()
+    parse_args_cli(cli_args)

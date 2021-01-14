@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+#pylint: disable=import-outside-toplevel, invalid-name
+"""Main gateway to the MailAdmin program."""
+
+import importlib
+import sys
+
+
+
+def run():
+    """Run the program."""
+    mysql_module = importlib.util.find_spec('pymysql')
+    if mysql_module is None:
+        print("The module 'pymysql' must be installed where Python can find it.")
+        print("On Debian, the easiest way to get it is:")
+        print("  $  apt-get install python3-pymysql")
+        sys.exit(1)
+
+    import src.mailadmin_cli as cli
+
+    parser = cli.create_parser()
+    args = parser.parse_args()
+    if args.no_gui:
+        cli.parse_args_cli(args)
+    else:
+        wx_model = importlib.util.find_spec('wx')
+        if wx_model is not None:
+            import src.mailadmin_gui as gui
+            gui.run()
+        else:
+            print("The module 'wxPython' must be installed where Python can find it")
+            print("to run in graphical mode. On Debian, the easiest way to get it is:")
+            print("  $  apt-get install python3-wxgtk4.0")
+            print("Alternatively, you can use the --no-gui flag and use the")
+            print("command-line interface.")
+            parser.print_usage()
+
+if __name__ == '__main__':
+    run()

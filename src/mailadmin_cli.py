@@ -14,9 +14,9 @@ from src import mailadmin_core as core
 def create_parser() -> argparse.ArgumentParser:
     """Run the command-line program."""
     parser = argparse.ArgumentParser(prog="MailAdmin",
-                                    description=("Manage the users of a Dovcot/Postfix mail "
-                                                "server set up according to instructions at "
-                                                "linode.com."))
+                                     description=("Manage the users of a Dovcot/Postfix mail "
+                                                 "server set up according to instructions at "
+                                                 "linode.com."))
 
     subparsers = parser.add_subparsers(dest='area',
         help='Which type of entity you want to inspect or modify.',)

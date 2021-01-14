@@ -25,3 +25,7 @@ the following:
 The `mailadmin.conf` configuration file is already set with the values used in the guide linked
 above and the steps in the preceding paragraph, though you will (hopefully) have to change the
 value of password.
+
+Then, to run the program, simply execute MailAdmin in the source directory. By default, it will
+try to load the GUI version. If you execute it from a terminal, supply the `--no-gui` flag
+to use the CLI version.
